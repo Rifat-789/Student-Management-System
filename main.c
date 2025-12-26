@@ -8,6 +8,7 @@ typedef struct{
     float cgpa;
 }Student;
 
+void loadData(Student students[], int *count);
 void printTitle(int padding, char title[]);
 void addStudent(Student students[], int *count);
 void printMenu(int choice);
@@ -63,8 +64,18 @@ int main(){
 }
 
 
-void loadData(){
+void loadData(Student students[], int *count){
+    FILE *pFile = fopen("students.dat", "rb");
 
+    if (pFile == NULL){
+        count = 0;
+    }
+
+    fread(count, sizeof(int), 1, pFile);
+    fread(students, sizeof(Student), *count, pFile);
+
+    fclose(pFile);
+    
 }
 
 void printTitle(int padding, char title[]){
