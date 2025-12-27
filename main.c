@@ -13,6 +13,7 @@ void printTitle(int padding, char title[]);
 void printMenu(int choice);
 void addStudent(Student students[], int *count);
 void viewAllStudent(Student students[], int count);
+int searchById(Student students[],  int count);
 void saveData(Student students[], int count);
 
 
@@ -70,7 +71,7 @@ int main(){
                 system("clear");
             #endif
 
-            
+            searchById(students, count);
             break;
         
         case 4:
@@ -203,8 +204,32 @@ void viewAllStudent(Student students[], int count){
     }
 }
 
-int searchById(){
+int searchById(Student students[],  int count){
+    if (count == 0){
+        printf("No students found!");
+    }
+    
+    int tempID = 0;
 
+    printf("Enter ID: ");
+    if(scanf("%d", &tempID) != 1){
+        printf("Invalid input. ID must be a number!\n");
+        while(getchar() != '\n');
+        return -1;
+    }
+
+    for (int i = 0; i < count; i++){
+        if (tempID == students[i].id){
+            printf("\nStudent %d\n", i + 1);
+            printf("Name: %s\n", students[i].name);
+            printf("ID: %d\n", students[i].id);
+            printf("CGPA: %.2f\n", students[i].cgpa);
+            return i;
+        }
+    }
+
+    printf("Student not found!");
+    return -1;
 }
 
 void updateStudent(){
