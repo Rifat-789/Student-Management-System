@@ -10,9 +10,10 @@ typedef struct{
 
 void loadData(Student students[], int *count);
 void printTitle(int padding, char title[]);
-void addStudent(Student students[], int *count);
 void printMenu(int choice);
+void addStudent(Student students[], int *count);
 void viewAllStudent(Student students[], int count);
+void saveData(Student students[], int count);
 
 
 int main(){
@@ -25,6 +26,8 @@ int main(){
     int choice = 0;
     Student students[100];
     int count = 0;
+    loadData(students, &count);
+
     do{
         #ifdef _WIN32                       // Clears the interface each time menu loop repeats
             system("cls");
@@ -59,6 +62,47 @@ int main(){
 
             viewAllStudent(students, count);
             break;
+
+        case 3:
+            #ifdef _WIN32                       
+                system("cls");
+            #else
+                system("clear");
+            #endif
+
+            
+            break;
+        
+        case 4:
+            #ifdef _WIN32                       
+                system("cls");
+            #else
+                system("clear");
+            #endif
+
+            
+            break;
+
+        case 5:
+            #ifdef _WIN32                       
+                system("cls");
+            #else
+                system("clear");
+            #endif
+
+            
+            break;
+
+        case 6:
+            #ifdef _WIN32                       
+                system("cls");
+            #else
+                system("clear");
+            #endif
+
+            saveData(students, count);
+            printf("Saved successfully");
+            break;
         
         default:
             break;
@@ -81,7 +125,8 @@ void loadData(Student students[], int *count){                      // We use po
     FILE *pFile = fopen("students.dat", "rb");
 
     if (pFile == NULL){
-        count = 0;
+        *count = 0;
+        return;
     }
 
     fread(count, sizeof(int), 1, pFile);
@@ -109,7 +154,7 @@ void printMenu(int choice){
     printf("3. Search Student by ID\n");
     printf("4. Update Student\n");
     printf("5. Delete Student\n");
-    printf("6. Exit\n");
+    printf("6. Save & Exit\n");
     printf("\n");
     printf("Enter your choice: ");
 }
@@ -170,6 +215,16 @@ void deletStudent(){
 
 }
 
-void saveData(){
+void saveData(Student students[], int count){
+    FILE *pFile = fopen("students.dat", "wb");
 
+    if (pFile == NULL){
+        printf("Error saving data!");
+        return;
+    }
+
+    fwrite(&count, sizeof(int), 1, pFile);
+    fwrite(students, sizeof(Student), count, pFile);
+
+    fclose(pFile);
 }
