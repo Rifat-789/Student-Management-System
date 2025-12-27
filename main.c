@@ -12,6 +12,7 @@ void loadData(Student students[], int *count);
 void printTitle(int padding, char title[]);
 void addStudent(Student students[], int *count);
 void printMenu(int choice);
+void viewAllStudent(Student students[], int count);
 
 
 int main(){
@@ -40,18 +41,30 @@ int main(){
         switch (choice)
         {
         case 1:
+            #ifdef _WIN32                      
+                system("cls");
+            #else
+                system("clear");
+            #endif
+
             addStudent(students, &count);
             break;
 
         case 2:
-            
+            #ifdef _WIN32                       
+                system("cls");
+            #else
+                system("clear");
+            #endif
+
+            viewAllStudent(students, count);
             break;
         
         default:
             break;
         }
 
-        printf("\nPress Enter to continue");
+        printf("\nPress Enter to continue");                        // This section let's you see the prompt messages befor refresh
         getchar();                          // Cleans leftover data
         getchar();                          // Waits for input
 
@@ -64,7 +77,7 @@ int main(){
 }
 
 
-void loadData(Student students[], int *count){
+void loadData(Student students[], int *count){                      // We use pointer when the function needs to change value
     FILE *pFile = fopen("students.dat", "rb");
 
     if (pFile == NULL){
@@ -128,8 +141,21 @@ void addStudent(Student students[], int *count){
     printf("\nStudent added successfully!\n");
 }
 
-void viewAllStudent(){
+void viewAllStudent(Student students[], int count){
+    if (count == 0){
+        printf("No Students Found!");
+        return;
+    }
     
+    printf("\nTotal Students: %d\n", count);
+    printf("=========================\n");
+
+    for (int i = 0; i < count; i++){
+        printf("\nStudent %d\n", i + 1);
+        printf("Name: %s\n", students[i].name);
+        printf("ID: %d\n", students[i].id);
+        printf("CGPA: %.2f\n", students[i].cgpa);
+    }
 }
 
 int searchById(){
