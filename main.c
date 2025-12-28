@@ -14,6 +14,7 @@ void printMenu(int choice);
 void addStudent(Student students[], int *count);
 void viewAllStudent(Student students[], int count);
 int searchById(Student students[],  int count);
+void updateStudent(Student students[], int count);
 void saveData(Student students[], int count);
 
 
@@ -81,7 +82,7 @@ int main(){
                 system("clear");
             #endif
 
-            
+            updateStudent(students, count);
             break;
 
         case 5:
@@ -232,8 +233,41 @@ int searchById(Student students[],  int count){
     return -1;
 }
 
-void updateStudent(){
+void updateStudent(Student students[], int count){
+    int tempId = 0;
+    int found = 0;
 
+    printf("Enter your ID: ");
+    scanf("%d", &tempId);
+    getchar();                                              // Consumes the \n
+
+    for (int i = 0; i < count; i++){
+        if (tempId == students[i].id){
+            found = 1;
+            printf("Name: %s\n", students[i].name);
+            printf("ID: %d\n", students[i].id);
+            printf("CGPA: %.2f\n", students[i].cgpa);
+            printf("\n");
+            
+            printf("Enter new name: ");
+            fgets(students[i].name, sizeof(students[i].name), stdin);
+            students[i].name[strcspn(students[i].name, "\n")] = '\0';
+
+            printf("Enter new CGPA: ");
+            if(scanf("%f", &students[i].cgpa) != 1){
+                printf("Invalid number! CGPA must be a number");
+                while(getchar() != '\n');
+                return;
+            }
+            
+            printf("\nInformation updated successfully\n");
+            break;
+        }
+    }
+
+    if (found == 0){
+        printf("Student not found!");
+    }
 }
 
 void deletStudent(){
