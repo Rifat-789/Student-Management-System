@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<ctype.h>
 
 typedef struct{
     char name[50];
@@ -15,6 +16,7 @@ void addStudent(Student students[], int *count);
 void viewAllStudent(Student students[], int count);
 int searchById(Student students[],  int count);
 void updateStudent(Student students[], int count);
+void deletStudent(Student students[], int *count);
 void saveData(Student students[], int count);
 
 int main(){
@@ -91,7 +93,7 @@ int main(){
                 system("clear");
             #endif
 
-            
+            deletStudent(students, &count);
             break;
 
         case 6:
@@ -271,9 +273,42 @@ void updateStudent(Student students[], int count){
 void deletStudent(Student students[], int *count){
     int tempID = 0;
     int found = 0;
+    char confirm = '\0';
 
-    for (int i = 0; i < count; i++){
-        
+    printf("Enter ID: ");
+    scanf("%d", &tempID);
+    getchar();
+
+    for (int i = 0; i < *count; i++){
+        if (tempID == students[i].id){
+            found = 1;
+            printf("Name: %s\n", students[i].name);
+            printf("ID: %d\n", students[i].id);
+            printf("CGPA: %.2f\n", students[i].cgpa);
+            printf("\n");
+
+            printf("Confint Delete?(Y/N): ");
+            scanf(" %c", &confirm);
+            confirm = toupper(confirm);
+
+            if(confirm == 'Y'){
+            for (int j = i; j < *count - 1; j++){
+                students[j] = students[j + 1];
+            }
+
+            (*count)--;
+            printf("Student deleted successfully");
+            return;
+            }
+
+            else{
+                return;
+            }
+        }
+    }
+
+    if (found == 0){
+        printf("Student not found!");
     }
 }
 
