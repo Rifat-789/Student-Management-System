@@ -54,6 +54,9 @@ int main(){
             #endif
 
             addStudent(students, &count);
+            printf("\nPress Enter to continue");                        // This section let's you see the prompt messages befor refresh
+            getchar();                          // Cleans leftover data
+            getchar();                          // Waits for input
             break;
 
         case 2:
@@ -64,6 +67,8 @@ int main(){
             #endif
 
             viewAllStudent(students, count);
+            printf("\nPress Enter to continue");                        // This section let's you see the prompt messages befor refresh
+            getchar();                          // Waits for input
             break;
 
         case 3:
@@ -74,6 +79,9 @@ int main(){
             #endif
 
             searchById(students, count);
+            printf("\nPress Enter to continue");                        // This section let's you see the prompt messages befor refresh
+            getchar();                          // Cleans leftover data
+            getchar();                          // Waits for input
             break;
         
         case 4:
@@ -84,6 +92,9 @@ int main(){
             #endif
 
             updateStudent(students, count);
+            printf("\nPress Enter to continue");                        // This section let's you see the prompt messages befor refresh
+            getchar();                          // Cleans leftover data
+            getchar();                          // Waits for input
             break;
 
         case 5:
@@ -94,6 +105,9 @@ int main(){
             #endif
 
             deletStudent(students, &count);
+            printf("\nPress Enter to continue");                        // This section let's you see the prompt messages befor refresh
+            getchar();                          // Cleans leftover data
+            getchar();                          // Waits for input
             break;
 
         case 6:
@@ -105,15 +119,16 @@ int main(){
 
             saveData(students, count);
             printf("Saved successfully");
+            printf("\nPress Enter to continue");                        // This section let's you see the prompt messages befor refresh
+            getchar();                          // Cleans leftover data
+            getchar();                          // Waits for input
             break;
         
         default:
             break;
         }
 
-        printf("\nPress Enter to continue");                        // This section let's you see the prompt messages befor refresh
-        getchar();                          // Cleans leftover data
-        getchar();                          // Waits for input
+        
 
     } while (choice != 6);
     
@@ -193,15 +208,47 @@ void viewAllStudent(Student students[], int count){
         printf("No Students Found!");
         return;
     }
+
+    int pageSize = 5;
+    int shown = 0;
+    char choice;
+
+    while(shown < count){
+        #ifdef _WIN32                       // Clears the interface each time menu loop repeats
+            system("cls");
+        #else
+            system("clear");
+        #endif
     
     printf("\nTotal Students: %d\n", count);
     printf("=========================\n");
 
-    for (int i = 0; i < count; i++){
+    int remaining = count - shown;
+    int limit = remaining < pageSize ? remaining : pageSize;
+
+    for (int i = shown; i < shown + limit; i++){                 // Shows only page size students
         printf("\nStudent %d\n", i + 1);
         printf("Name: %s\n", students[i].name);
         printf("ID: %d\n", students[i].id);
         printf("CGPA: %.2f\n", students[i].cgpa);
+    }
+
+    shown += limit;
+
+    if (shown >= count){
+        printf("\nEnd of list\n");
+        break;
+    }
+
+    printf("Press ENTER for the next page or 'Q' to Quit");
+    choice = getchar();
+
+    if (choice == 'Q' || choice == 'q'){
+        break;
+    }
+    
+    getchar();                              // consumes new line
+
     }
 }
 
