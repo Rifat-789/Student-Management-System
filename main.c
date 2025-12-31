@@ -17,7 +17,6 @@ int searchById(Student students[],  int count);
 void updateStudent(Student students[], int count);
 void saveData(Student students[], int count);
 
-
 int main(){
 
     char title[] = "STUDENT MANAGEMENT SYSTEM";
@@ -121,7 +120,6 @@ int main(){
 
     return 0;
 }
-
 
 void loadData(Student students[], int *count){                      // We use pointer when the function needs to change value
     FILE *pFile = fopen("students.dat", "rb");
@@ -239,7 +237,7 @@ void updateStudent(Student students[], int count){
 
     printf("Enter your ID: ");
     scanf("%d", &tempId);
-    getchar();                                              // Consumes the \n
+    getchar();                                              // Consumes the \n character left by scanf
 
     for (int i = 0; i < count; i++){
         if (tempId == students[i].id){
@@ -255,11 +253,11 @@ void updateStudent(Student students[], int count){
 
             printf("Enter new CGPA: ");
             if(scanf("%f", &students[i].cgpa) != 1){
-                printf("Invalid number! CGPA must be a number");
+                printf("Invalid Input! CGPA must be a number");
                 while(getchar() != '\n');
                 return;
             }
-            
+
             printf("\nInformation updated successfully\n");
             break;
         }
@@ -270,8 +268,13 @@ void updateStudent(Student students[], int count){
     }
 }
 
-void deletStudent(){
+void deletStudent(Student students[], int *count){
+    int tempID = 0;
+    int found = 0;
 
+    for (int i = 0; i < count; i++){
+        
+    }
 }
 
 void saveData(Student students[], int count){
