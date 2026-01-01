@@ -33,13 +33,15 @@ The project supports full **CRUD operations** and stores data persistently using
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
+```text
 Student-Management-System/
 │
-├── main.c # Main source code
-├── students.dat # Binary file for persistent storage
-└── README.md # Project documentation
+├── main.c        # Main source code
+├── students.dat  # Binary file for persistent storage (auto-generated)
+└── README.md     # Project documentation
+
 
 ## 📋 How the Program Works
 
@@ -63,13 +65,50 @@ To improve readability, student records are displayed using pagination.
 
 ## ▶️ How to Compile and Run
 
-### 🔧 Prerequisites
+Follow these steps to compile and run the Student Management System on your machine.
+
+### 1️⃣ Prerequisites
 Make sure you have a C compiler installed.
 
-- **Linux / macOS:** GCC
-- **Windows:** MinGW (or use Git Bash with GCC)
+- **Linux / macOS:** GCC is usually preinstalled  
+- **Windows:** Install MinGW or use WSL
 
 Check if GCC is installed:
 ```bash
 gcc --version
 
+### 2️⃣ Clone or Download the Project
+If using git: 
+```bash
+git clone git@github.com:Rifat-789/Student-Management-System.git
+```bash
+cd Student-Management-System
+
+### 3️⃣ Compile the Program
+```bash
+gcc main.c -o Student-Management-System
+
+### 4️⃣ Run the Program
+- **Linux / macOS:** 
+```bash
+./Student-Management-System
+
+- **Windows(Command Prompt or PowerShell):** 
+```bash
+Student-Management-System.exe
+
+- **Windows(Git Bash):**
+```bash
+./Student-Management-System.exe
+
+---
+
+## ▶️ Author:
+
+**Md Rifat**
+
+---
+
+## ▶️ License:
+
+**This project is created for learning and educational purposes.**
