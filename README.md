@@ -76,30 +76,37 @@ Make sure you have a C compiler installed.
 Check if GCC is installed:
 ```bash
 gcc --version
+```
 
 ### 2️⃣ Clone or Download the Project
 If using git: 
 ```bash
 git clone git@github.com:Rifat-789/Student-Management-System.git
+```
 ```bash
 cd Student-Management-System
+```
 
 ### 3️⃣ Compile the Program
 ```bash
 gcc main.c -o Student-Management-System
+```
 
 ### 4️⃣ Run the Program
 - **Linux / macOS:** 
 ```bash
 ./Student-Management-System
+```
 
 - **Windows(Command Prompt or PowerShell):** 
 ```bash
 Student-Management-System.exe
+```
 
 - **Windows(Git Bash):**
 ```bash
 ./Student-Management-System.exe
+```
 
 ---
 
