@@ -41,7 +41,7 @@ Student-Management-System/
 ├── main.c        # Main source code
 ├── students.dat  # Binary file for persistent storage (auto-generated)
 └── README.md     # Project documentation
-
+```
 
 ## 📋 How the Program Works
 
