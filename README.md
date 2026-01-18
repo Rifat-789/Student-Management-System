@@ -102,6 +102,7 @@ gcc main.c -o Student-Management-System
 ```bash
 Student-Management-System.exe
 ```
+Or, copy the path of the exe file and paste it
 
 - **Windows(Git Bash):**
 ```bash
